@@ -19,8 +19,8 @@ char ssid[] = "ESP-Guest";  //ชื่อไวไฟ
 char pass[] = "123456789";  //รหัสไวไฟ
 
 //กำหนดขาrelay
-#define lamp1 D2
-#define lamp2 D4
+#define lamp1 D0
+#define lamp2 D3
 
 #define BLYNK_Green     "#23C48E"
 #define BLYNK_Blue      "#04C0F8"
@@ -67,8 +67,8 @@ BLYNK_WRITE(V2)
 }
 
 void led_blink() {
-  digitalWrite(16,!digitalRead(16));
-  if(digitalRead(16)){
+  digitalWrite(D4,!digitalRead(D4));
+  if(digitalRead(D4)){
     led3.off();
   }
   else{
@@ -78,15 +78,15 @@ void led_blink() {
 
 void setup() {
   Serial.begin(115200);
-  pinMode(2,OUTPUT);
+  pinMode(D0,OUTPUT);
   Blynk.begin(auth, ssid, pass);
   timer.setInterval(1000L, led_blink);
   Serial.println();
   pinMode(lamp1,OUTPUT);
   pinMode(lamp2,OUTPUT);
-  pinMode(16,OUTPUT);
-  pinMode(lamp1,LOW);
-  pinMode(lamp2,LOW);
+  pinMode(D8,OUTPUT);
+  pinMode(lamp1,HIGH);
+  pinMode(lamp2,HIGH);
 }
 
 void loop() {
